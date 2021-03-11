@@ -6,8 +6,6 @@ export default class App extends Component {
     super(props)
   
     this.state = {
-
-      list: [],
     
       groceryList: [
         {
@@ -15,6 +13,7 @@ export default class App extends Component {
           price: '$5',
           imageLink: '',
           description: 'Bag of apples',
+          
 
 
         },
