@@ -2,21 +2,31 @@ import React, { Component, useState } from 'react'
 import GlobalContext from '../../context/GlobalContext'
 
 
-function AddingControls() {
+function AddingControls({handler}) {
    
     const handleOnClick = (data) => {
-        console.log(data);
-        let  newData =
-           {
-            name: nameInput,
-            price: priceInput,
-            imageLink: imageInput,
-            description: descriptionInput
-            
-           }
+       
+        
+        let  newData = [...data]
 
-       data.push(newData)
+          
 
+       newData.push( {
+        name: nameInput,
+        price: priceInput,
+        imageLink: imageInput,
+        description: descriptionInput
+        
+       })
+
+      
+
+       handler(newData)
+
+       setNameInput('') 
+       setPriceInput('') 
+       setImageInput('') 
+       setDescriptionInput('') 
        
     }    
 
@@ -48,7 +58,7 @@ function AddingControls() {
              {(data) => {
                return  (<div>
                 
-       <button onClick={ () => handleOnClick(data)}  >Show Data</button>
+       <button onClick={ () => handleOnClick(data.groceryList)}  >Show Data</button>
        <input type='text' value={nameInput} onChange={handleNameInput} />
       <input type='text' value={priceInput} onChange={handlePriceInput} />
       <input type='text' value={imageInput} onChange={handleImageInput} />

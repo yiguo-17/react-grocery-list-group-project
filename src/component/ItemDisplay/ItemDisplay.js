@@ -50,7 +50,7 @@ function ItemDisplay() {
     const [priceInput, setPriceInput] = useState('')    
     const [imageInput, setImageInput] = useState('')
     const [descriptionInput, setDescriptionInput] = useState('')
-
+    const [groceries, setGroceries] = useState([])
 
 
     return (
@@ -58,11 +58,14 @@ function ItemDisplay() {
         <div  >
  
          <GlobalContext.Consumer>
+          
              {(data) => {
+               setGroceries(data.groceryList)
+               console.log(groceries);
                return(
                 <div className={css.wrapper}>
                   {
-                    data.map((item, index)=> (
+                    data.groceryList.map((item, index)=> (
                       <GroceryItem
                         key={item.name}
                         index={index}
