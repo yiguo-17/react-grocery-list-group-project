@@ -29,9 +29,7 @@ export default class App extends Component {
         },
       ]
     }
-    this.handler = () => {
-      console.log(this.state);
-    }
+   
 
    
 
@@ -49,9 +47,7 @@ export default class App extends Component {
         <AddingControls  />
         </GlobalContext.Provider>
    
-        <button onClick={this.handler} >
-          show
-        </button>
+        
 
       </div>
     )
