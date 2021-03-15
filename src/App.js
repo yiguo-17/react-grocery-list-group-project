@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GlobalContext from "./context/GlobalContext";
 import AddingControls from './component/AddingControls/AddingControls'
+import ItemDisplay from './component/ItemDisplay/ItemDisplay';
 
 
 
@@ -45,6 +46,7 @@ export default class App extends Component {
       <div>
         <GlobalContext.Provider value={this.state.groceryList} >
         <AddingControls  />
+        <ItemDisplay />
         </GlobalContext.Provider>
    
         
