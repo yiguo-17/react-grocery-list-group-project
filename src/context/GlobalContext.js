@@ -1,8 +1,8 @@
 import React from 'react';
 
 const GlobalContext =  React.createContext ({
-  
-    groceryList: []
-  });
+
+  groceryList: []
+});
   
 export default GlobalContext 

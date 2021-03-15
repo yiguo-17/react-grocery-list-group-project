@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import GlobalContext from "./GlobalContext";
+import GlobalContext from "./context/GlobalContext";
+import AddingControls from './component/AddingControls/AddingControls'
+
+
+
 export default class App extends Component {
 
   constructor(props) {
@@ -25,6 +29,11 @@ export default class App extends Component {
         },
       ]
     }
+    this.handler = () => {
+      console.log(this.state);
+    }
+
+   
 
 }
 
@@ -32,13 +41,18 @@ export default class App extends Component {
 
   render() {
 
+     console.log(this.state);
 
     return (
       <div>
-    <GlobalContext.Provider value={this.state}>
-      <GlobalContext />
-    </GlobalContext.Provider>        {
-}
+        <GlobalContext.Provider value={this.state.groceryList} >
+        <AddingControls  />
+        </GlobalContext.Provider>
+   
+        <button onClick={this.handler} >
+          show
+        </button>
+
       </div>
     )
   }
