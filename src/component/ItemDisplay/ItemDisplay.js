@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react'
 import {createUseStyles} from 'react-jss';
 import GroceryItem from '../Item/Item';
 import GlobalContext from '../../context/GlobalContext'
+import Pagination from './Pagination';
 
 const useStyles = createUseStyles({
   wrapper: {
@@ -18,6 +19,12 @@ function ItemDisplay() {
   const css = useStyles();
 
     const [groceries, setGroceries] = useState([])
+    const [currentPage,setCurrentPage]= useState(1);
+    const[cardsPerPage] = useState(10);
+    const indexOfLastCard = currentPage * cardsPerPage;
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    
 
 
     return (
@@ -29,10 +36,12 @@ function ItemDisplay() {
              {(data) => {
                setGroceries(data.groceryList)
                console.log(groceries);
+               const currentCards = groceries.slice(indexOfFirstCard,indexOfLastCard);
+               
                return(
                 <div className={css.wrapper}>
                   {
-                    data.groceryList.map((item, index)=> (
+                    currentCards.map((item, index)=> (
                       <GroceryItem
                         key={item.name}
                         index={index}
@@ -48,7 +57,13 @@ function ItemDisplay() {
                 </div>
               )
             }}
+            
          </GlobalContext.Consumer>
+         <Pagination
+         cardsPerPage ={cardsPerPage}
+         totalCards = {groceries.length}
+         paginate = {paginate}/>
+         
  
         
         </div>
