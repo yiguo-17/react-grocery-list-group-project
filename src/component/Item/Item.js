@@ -1,6 +1,8 @@
 import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types'; //acts as a middleware to sanitize prop passing
 import {createUseStyles} from 'react-jss';
+import GlobalContext from "../../context/GlobalContext";
+
 
 const useStyles = createUseStyles({
     add: {
@@ -49,20 +51,39 @@ export default function GroceryItem({ image, name, index, list}) {
     } 
   
   return(
-    <div className={css.wrapper}>
-        <h3>
-          {name}
-        </h3>
-        <button className={css.add}>
-          <span className={css.image} role="img" aria-label={name}>
-              {image}
-          </span>
-        </button>
-        <button className={css.remove} type="button" onClick={handleRemove}>
-            X
-      </button>
-    </div>
+      <GlobalContext.Consumer>
+        {(data) => {
+          return(
+            <div className={css.wrapper}>
+            <h3>
+              {name}
+            </h3>
+            <button className={css.add}>
+              <span className={css.image} role="img" aria-label={name}>
+                  {image}
+              </span>
+            </button>
+            <button className={css.button} onClick={ () => {
+              
+              
+              const reducedArr = [...list];
+              const test = reducedArr.splice(index, 1);
+              console.log(list);
+      
+              data.editControlsHandler(reducedArr)              
+              
+              }}>
+                X
+          </button>
+        </div>
+          )
+
+        }}
+
+    </GlobalContext.Consumer>
+
   )
+
 }
 
 //prop sanitizing
@@ -71,5 +92,6 @@ GroceryItem.propTypes = {
   name: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   list: PropTypes.array.isRequired,
+  edit: PropTypes.func.isRequired,
 
 }

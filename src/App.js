@@ -32,8 +32,15 @@ export default class App extends Component {
         groceryList: 
         item
    })
-
    }
+   this.editControlsHandler = (item) =>{
+      this.setState({
+        groceryList:
+        item 
+      })
+      //console.log(item);
+   }
+
    this.newhandler = () => {
      console.log(this.state);
    }
@@ -42,10 +49,10 @@ export default class App extends Component {
 
     return (
       <div>
-        <GlobalContext.Provider value={{groceryList: this.state.groceryList}} >
+        <GlobalContext.Provider value={{groceryList: this.state.groceryList, editControlsHandler: this.editControlsHandler}} >
         <AddingControls handler={(item) => this.handler(item)}  />
+        <ItemDisplay editControlsHandler={(item) => {this.editControlsHandler(item)}}  /> 
         <Search />
-        <ItemDisplay /> 
         </GlobalContext.Provider>
       <button onClick={this.newhandler}>state check</button>
       </div>

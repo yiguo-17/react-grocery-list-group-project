@@ -1,8 +1,8 @@
 import React from 'react';
 
 const GlobalContext =  React.createContext ({
-
-  groceryList: []
+  groceryList: [],
+  editControlsHandler: () => {}
 });
   
 export default GlobalContext 
