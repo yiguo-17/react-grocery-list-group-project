@@ -1,10 +1,9 @@
-.search{
+.Box{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    width: 300px;
     height: 40px;
     font-size: 20px;
-    padding: left 10px; ;
+    padding-left: 10px; 
 }

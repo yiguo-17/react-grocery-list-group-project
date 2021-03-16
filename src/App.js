@@ -44,8 +44,8 @@ export default class App extends Component {
       <div>
         <GlobalContext.Provider value={{groceryList: this.state.groceryList}} >
         <AddingControls handler={(item) => this.handler(item)}  />
-        <ItemDisplay /> 
         <Search />
+        <ItemDisplay /> 
         </GlobalContext.Provider>
       <button onClick={this.newhandler}>state check</button>
       </div>

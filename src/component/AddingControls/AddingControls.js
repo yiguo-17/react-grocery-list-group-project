@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react'
 import {createUseStyles} from 'react-jss';
 import GlobalContext from '../../context/GlobalContext'
+import Modal from '../Search/Modal'
 
 const useStyles = createUseStyles({
     wrapper: {
@@ -62,7 +63,8 @@ function AddingControls({handler}) {
     const [nameInput, setNameInput] = useState('')
     const [priceInput, setPriceInput] = useState('')    
     const [imageInput, setImageInput] = useState('')
-    const [descriptionInput, setDescriptionInput] = useState('')
+    const [descriptionInput, setDescriptionInput] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
 
     const css = useStyles();
 
@@ -73,12 +75,27 @@ function AddingControls({handler}) {
          <GlobalContext.Consumer>
              {(data) => {
                return  (<div className={css.wrapper}>
-       
-       <button className={css.button} onClick={ () => handleOnClick(data.groceryList)}>Submit</button>
+       <button className="add-btn" onClick = {()=>setIsOpen(true)}>+</button>
+       <Modal open = {isOpen} close = {()=>{setIsOpen(false)}}>
+                            <div className='form'>
+                            <label>Name: </label>
        <input className={css.input} type='text' value={nameInput} onChange={handleNameInput} />
+       <br></br>
+       <label>Price: </label>
       <input className={css.input} type='text' value={priceInput} onChange={handlePriceInput} />
+      <br></br>
+      <label>Img Link: </label>
       <input className={css.input} type='text' value={imageInput} onChange={handleImageInput} />
+      <br></br>
+      <label>Description: </label>
       <input className={css.input} type='text' value={descriptionInput} onChange={handleDescriptionInput} />
+      <br></br>
+      <button className={css.button} onClick={ () => handleOnClick(data.groceryList)}>Submit</button>
+            
+            
+                </div>
+                            </Modal>
+      
                  </div>)
              }}
          </GlobalContext.Consumer>

@@ -12,7 +12,7 @@ function Search(){
     const [isOpen, setIsOpen] = useState(false);
     const [groceries, setGroceries] = useState([]);
     return(
-        <div className = "search">
+        <div className = "Box">
             <GlobalContext.Consumer>
                 {
                     (data)=>{
