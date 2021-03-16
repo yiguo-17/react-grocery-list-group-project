@@ -32,13 +32,20 @@ const useStyles = createUseStyles({
 
 export default function GroceryItem({ image, name, index, list}) {
   const css = useStyles();
-  //const [list, setList] = useState(groceryList)
+  //const [groceryList, setList] = useState(...list)
 
     function handleRemove(e){
         e.preventDefault();
-        console.log(list[index]);
+
+        const reducedArr = [...list];
+
+        const test = reducedArr.splice(index, 1);
+    
+        //setState({groceryList: reducedArr})
+
+        //console.log(list[index]);
     //    setList([])
-        console.log(list);
+        console.log(reducedArr );
     } 
   
   return(

@@ -1,6 +1,23 @@
 import React, { Component, useState } from 'react'
+import {createUseStyles} from 'react-jss';
 import GlobalContext from '../../context/GlobalContext'
 
+const useStyles = createUseStyles({
+    wrapper: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      padding: [10, 50],
+      justifyContent: 'center',
+    },
+    button: {
+        color: 'green',
+        border: 'lightgrey solid 0.5px',
+        fontSize: 12,
+      },
+    input: {
+        border: 'lightgrey solid 0.5px',
+      },
+  });
 
 function AddingControls({handler}) {
    
@@ -9,8 +26,7 @@ function AddingControls({handler}) {
         
         let  newData = [...data]
 
-          
-
+        
        newData.push( {
         name: nameInput,
         price: priceInput,
@@ -48,7 +64,7 @@ function AddingControls({handler}) {
     const [imageInput, setImageInput] = useState('')
     const [descriptionInput, setDescriptionInput] = useState('')
 
-
+    const css = useStyles();
 
     return (
 
@@ -56,13 +72,13 @@ function AddingControls({handler}) {
  
          <GlobalContext.Consumer>
              {(data) => {
-               return  (<div>
-                
-       <button onClick={ () => handleOnClick(data.groceryList)}  >Show Data</button>
-       <input type='text' value={nameInput} onChange={handleNameInput} />
-      <input type='text' value={priceInput} onChange={handlePriceInput} />
-      <input type='text' value={imageInput} onChange={handleImageInput} />
-      <input type='text' value={descriptionInput} onChange={handleDescriptionInput} />
+               return  (<div className={css.wrapper}>
+       
+       <button className={css.button} onClick={ () => handleOnClick(data.groceryList)}>Submit</button>
+       <input className={css.input} type='text' value={nameInput} onChange={handleNameInput} />
+      <input className={css.input} type='text' value={priceInput} onChange={handlePriceInput} />
+      <input className={css.input} type='text' value={imageInput} onChange={handleImageInput} />
+      <input className={css.input} type='text' value={descriptionInput} onChange={handleDescriptionInput} />
                  </div>)
              }}
          </GlobalContext.Consumer>

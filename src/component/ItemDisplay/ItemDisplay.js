@@ -17,39 +17,6 @@ function ItemDisplay() {
 
   const css = useStyles();
 
-    const handleOnClick = (data) => {
-        console.log(data);
-        let  newData =
-           {
-            name: nameInput,
-            price: priceInput,
-            imageLink: imageInput,
-            description: descriptionInput
-            
-           }
-
-       data.push(newData)
-
-       
-    }    
-
-    const handleNameInput = (event) => {
-        setNameInput(event.target.value)
-        console.log(nameInput);
-    }
-    const handlePriceInput = (event) => {
-        setPriceInput(event.target.value)
-    }
-    const handleImageInput = (event) => {
-        setImageInput(event.target.value)
-    }
-    const handleDescriptionInput = (event) => {
-        setDescriptionInput(event.target.value)
-    }
-    const [nameInput, setNameInput] = useState('')
-    const [priceInput, setPriceInput] = useState('')    
-    const [imageInput, setImageInput] = useState('')
-    const [descriptionInput, setDescriptionInput] = useState('')
     const [groceries, setGroceries] = useState([])
 
 
@@ -71,7 +38,7 @@ function ItemDisplay() {
                         index={index}
                         image={item.imageLink}
                         name={item.name}
-                        list={item.name}
+                        list={data.groceryList}
             
                      />
                     ))
