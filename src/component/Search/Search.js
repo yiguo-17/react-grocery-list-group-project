@@ -1,5 +1,6 @@
 import React, { Component, useState } from 'react';
 import GroceryItem from '../Item/Item';
+import './Search.css'
 import GlobalContext from '../../context/GlobalContext';
 import Modal from './Modal';
 
