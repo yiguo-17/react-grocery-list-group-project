@@ -1,4 +1,5 @@
 import React from 'react'
+import './ItemDisplay.css'
 
 function Pagination({cardsPerPage, totalCards,paginate}) {
     const pageNumbers = [];
@@ -11,7 +12,7 @@ function Pagination({cardsPerPage, totalCards,paginate}) {
                 {pageNumbers.map(num=>(
                     <li key = {num} className = 'page-btn'>
                         <a onClick={()=>paginate(num)} href='!#' className = 'page-link'>
-                            {num}
+                            {  num  }
                         </a>
                     </li>
                 ))}
