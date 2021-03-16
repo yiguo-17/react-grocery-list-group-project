@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import GlobalContext from "./context/GlobalContext";
 import AddingControls from './component/AddingControls/AddingControls'
 import ItemDisplay from './component/ItemDisplay/ItemDisplay';
+import Search from './component/Search/Search'
 export default class App extends Component {
 
   constructor(props) {
@@ -44,6 +45,7 @@ export default class App extends Component {
         <GlobalContext.Provider value={{groceryList: this.state.groceryList}} >
         <AddingControls handler={(item) => this.handler(item)}  />
         <ItemDisplay /> 
+        <Search />
         </GlobalContext.Provider>
       <button onClick={this.newhandler}>state check</button>
       </div>
