@@ -32,23 +32,61 @@ const useStyles = createUseStyles({
       }
 });
 
-export default function GroceryItem({ image, name, index, list, nameInput, handleNameInput, priceInput, handlePriceInput, imageInput, handleImageInput, descriptionInput, handleDescriptionInput, handleOnClick}) {
+export default function GroceryItem({ image, name, index, list}) {
   const css = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
     function handleRemove(e){
         e.preventDefault();
-
         const reducedArr = [...list];
-
         const test = reducedArr.splice(index, 1);
-    
-        //setState({groceryList: reducedArr})
-
-        //console.log(list[index]);
-    //    setList([])
         console.log(reducedArr );
     } 
+
+    const handleOnClick = (data) => {
+       
+        
+      let  newData = [...data]
+
+      
+     newData.push( {
+      name: nameInput,
+      price: priceInput,
+      imageLink: imageInput,
+      description: descriptionInput
+      
+     })
+
+    
+
+     //handler(newData)
+
+     setNameInput('') 
+     setPriceInput('') 
+     setImageInput('') 
+     setDescriptionInput('') 
+     
+  }    
+
+  const handleNameInput = (event) => {
+      setNameInput(event.target.value)
+      console.log(nameInput);
+  }
+  const handlePriceInput = (event) => {
+      setPriceInput(event.target.value)
+  }
+  const handleImageInput = (event) => {
+      setImageInput(event.target.value)
+  }
+  const handleDescriptionInput = (event) => {
+      setDescriptionInput(event.target.value)
+  }
+  const [nameInput, setNameInput] = useState('')
+  const [priceInput, setPriceInput] = useState('')    
+  const [imageInput, setImageInput] = useState('')
+  const [descriptionInput, setDescriptionInput] = useState('');
+  //const [isOpen, setIsOpen] = useState(false);
+
   
   return(
       <GlobalContext.Consumer>
@@ -69,7 +107,6 @@ export default function GroceryItem({ image, name, index, list, nameInput, handl
               const reducedArr = [...list];
               const test = reducedArr.splice(index, 1);
               console.log(list);
-      
               data.editControlsHandler(reducedArr)              
               
               }}>
@@ -78,7 +115,7 @@ export default function GroceryItem({ image, name, index, list, nameInput, handl
 
           <button onClick = {()=>setIsOpen(true)}>Edit</button>
           <Modal open = {isOpen} close = {()=>{setIsOpen(false)}}>
-                            <div className='form'>
+                          <div className='form'>
                             <label>Name: </label>
        <input className={css.input} type='text' value={nameInput} onChange={handleNameInput} />
        <br></br>
@@ -91,8 +128,25 @@ export default function GroceryItem({ image, name, index, list, nameInput, handl
       <label>Description: </label>
       <input className={css.input} type='text' value={descriptionInput} onChange={handleDescriptionInput} />
       <br></br>
-      <button className={css.button} onClick={ () => handleOnClick(data.groceryList)}>Submit</button>
-            
+      <button className={css.button} onClick={ () => {
+              
+        //{newData}
+              
+              const reducedArr = [...list];
+              const obj = {
+                name: 'j',
+                price: '$7',
+                imageLink: '',
+                description: 'Bundle of mongos',
+              }
+
+              const testi = list.splice(index, 1, obj);
+              //console.log(list[index]);
+              data.editControlsHandler(list)              
+              console.log({testi})
+              }}>
+                Save Edit
+          </button>            
             
                 </div>
                             </Modal>
