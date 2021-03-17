@@ -43,24 +43,15 @@ export default function GroceryItem({ image, name, index, list}) {
         console.log(reducedArr );
     } 
 
-    const handleOnClick = (data) => {
-       
-        
+    const handleOnClick = (data) => { 
       let  newData = [...data]
-
-      
-     newData.push( {
+      newData.push( {
       name: nameInput,
       price: priceInput,
       imageLink: imageInput,
       description: descriptionInput
       
      })
-
-    
-
-     //handler(newData)
-
      setNameInput('') 
      setPriceInput('') 
      setImageInput('') 
@@ -129,21 +120,20 @@ export default function GroceryItem({ image, name, index, list}) {
       <input className={css.input} type='text' value={descriptionInput} onChange={handleDescriptionInput} />
       <br></br>
       <button className={css.button} onClick={ () => {
-              
-        //{newData}
-              
-              const reducedArr = [...list];
+ 
+              let nameVal = {nameInput}
+
               const obj = {
-                name: 'j',
+                name: nameVal.nameInput,
                 price: '$7',
                 imageLink: '',
                 description: 'Bundle of mongos',
               }
-
-              const testi = list.splice(index, 1, obj);
-              //console.log(list[index]);
+              const replace = list.splice(index, 1, obj);
               data.editControlsHandler(list)              
-              console.log({testi})
+              //console.log({replace})
+              console.log(nameInput)
+
               }}>
                 Save Edit
           </button>            
