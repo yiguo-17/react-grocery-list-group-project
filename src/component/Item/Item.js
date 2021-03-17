@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types'; //acts as a middleware to sanitize prop passing
 import {createUseStyles} from 'react-jss';
 import GlobalContext from "../../context/GlobalContext";
-
+import Modal from '../Search/Modal';
 
 const useStyles = createUseStyles({
     add: {
@@ -32,9 +32,9 @@ const useStyles = createUseStyles({
       }
 });
 
-export default function GroceryItem({ image, name, index, list}) {
+export default function GroceryItem({ image, name, index, list, nameInput, handleNameInput, priceInput, handlePriceInput, imageInput, handleImageInput, descriptionInput, handleDescriptionInput, handleOnClick}) {
   const css = useStyles();
-  //const [groceryList, setList] = useState(...list)
+  const [isOpen, setIsOpen] = useState(false);
 
     function handleRemove(e){
         e.preventDefault();
@@ -75,6 +75,28 @@ export default function GroceryItem({ image, name, index, list}) {
               }}>
                 X
           </button>
+
+          <button onClick = {()=>setIsOpen(true)}>Edit</button>
+          <Modal open = {isOpen} close = {()=>{setIsOpen(false)}}>
+                            <div className='form'>
+                            <label>Name: </label>
+       <input className={css.input} type='text' value={nameInput} onChange={handleNameInput} />
+       <br></br>
+       <label>Price: </label>
+      <input className={css.input} type='text' value={priceInput} onChange={handlePriceInput} />
+      <br></br>
+      <label>Img Link: </label>
+      <input className={css.input} type='text' value={imageInput} onChange={handleImageInput} />
+      <br></br>
+      <label>Description: </label>
+      <input className={css.input} type='text' value={descriptionInput} onChange={handleDescriptionInput} />
+      <br></br>
+      <button className={css.button} onClick={ () => handleOnClick(data.groceryList)}>Submit</button>
+            
+            
+                </div>
+                            </Modal>
+
         </div>
           )
 
